@@ -1,5 +1,6 @@
-package com.example.service.client.config;
+package com.example.service.client.config.security;
 
+import com.example.service.client.config.TokenService;
 import com.example.service.client.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
