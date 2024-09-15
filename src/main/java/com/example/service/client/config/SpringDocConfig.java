@@ -14,7 +14,7 @@ public class SpringDocConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(
-                        new Info().title("Client service api")
+                        new Info().title("Cclientelient service api")
                                 .description("THIS PART OF THE API IS RESPONSIBLE FOR CUSTOMER REGISTRATION AND OTHER DELETE, UPDATE, SIMPLE SEARCH FUNCTIONALITIES")
                                 .version("v0.0.1")
                 )

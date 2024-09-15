@@ -1,12 +1,11 @@
 package com.example.service.client.config.security;
 
-import com.example.service.client.config.TokenService;
-import com.example.service.client.repository.UserRepository;
+
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -16,19 +15,15 @@ import java.io.IOException;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
-    @Autowired
-    private TokenService tokenService;
-    @Autowired
-    private UserRepository repository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = this.getToken(request);
-        if(token != null){
-            var user = tokenService.getSubject(token);
-            var userAuth = repository.findByLogin(user);
-            var auth = new UsernamePasswordAuthenticationToken(userAuth,null,userAuth.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
 
+        if(token !=null){
+            //UM METODO PARA PASSAR POR AQUI PARA VALIDAR USER
+            var userAuth = new UsernamePasswordAuthenticationToken(null,null,null);
+            SecurityContextHolder.getContext().setAuthentication(userAuth);
         }
         filterChain.doFilter(request,response);
     }
