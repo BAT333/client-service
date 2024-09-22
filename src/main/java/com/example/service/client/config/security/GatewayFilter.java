@@ -15,7 +15,7 @@ import java.util.List;
 public class GatewayFilter extends OncePerRequestFilter {
     private static final List<String> PUBLIC_URIS = List.of("/public");
     private static final String TRUSTED_PROXY_IP = "172.27.64.1";
-    private static final String TRUSTED_ORIGIN = "http://172.27.64.1:8082";
+    private static final List<String> TRUSTED_ORIGINS = List.of("http://172.27.64.1:8082", "http://localhost:8082");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -47,6 +47,5 @@ public class GatewayFilter extends OncePerRequestFilter {
         System.out.println("Referer: " + (refererHeader != null ? refererHeader : "N/A"));
 
 
-        return TRUSTED_ORIGIN.equals(originHeader) || (refererHeader != null && refererHeader.startsWith(TRUSTED_ORIGIN));
-    }
+        return TRUSTED_ORIGINS.contains(originHeader) || (refererHeader != null && TRUSTED_ORIGINS.stream().anyMatch(refererHeader::startsWith));    }
 }

@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/api/client/")
 @SecurityRequirement(name = "bearer-key")
-@CrossOrigin(origins = "http://172.27.64.1:8082")
+@CrossOrigin(origins = {"http://172.27.64.1:8082", "http://localhost:8082"})
 public class ClientController {
     @Autowired
     private ClientService service;
