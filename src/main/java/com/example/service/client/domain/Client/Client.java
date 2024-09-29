@@ -2,7 +2,6 @@ package com.example.service.client.domain.Client;
 
 
 import com.example.service.client.domain.Address;
-import com.example.service.client.domain.User;
 import com.example.service.client.model.client.DataClientDTO;
 import com.example.service.client.model.client.DataClientUpdateDTO;
 import jakarta.persistence.*;
@@ -37,7 +36,7 @@ public class Client {
     private Address address;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "logins",nullable = false,unique = true)
-    private User login;
+    private String login;
 
 
     public Client(DataClientDTO dto) {
@@ -49,7 +48,7 @@ public class Client {
         this.address = new Address(dto.address());
     }
 
-    public Client(DataClientDTO dto, User user) {
+    public Client(DataClientDTO dto, String user) {
         this.name = dto.name();
         this.email = dto.email();
         this.cpf = dto.cpf();
