@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class TaskScheduling {
     @Scheduled(fixedDelay = 12, timeUnit = TimeUnit.HOURS)
-    @CacheEvict("Client")
+    @CacheEvict(value = "Client", allEntries =true)
     public void clearingClientCache() {
         log.info("Cleared 'Client' cache on: " + LocalDateTime.now());
     }
