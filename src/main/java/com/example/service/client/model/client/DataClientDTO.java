@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 public record DataClientDTO(
@@ -24,7 +25,7 @@ public record DataClientDTO(
         String cpf,
         @Valid
         DataAddressDTO address
-) {
+)implements Serializable {
     public DataClientDTO(Client client) {
         this(client.getName(), client.getEmail(),client.getBirth(), client.getCpf(), new DataAddressDTO(client.getAddress()));
     }
